@@ -3,17 +3,22 @@ from app import app
 from datetime import datetime
 
 @app.route('/')
+@app.route('/home')
 def index():
     return render_template('index.html')
 
-@app.route('/journal', methods=['GET', 'POST'])
-def journal():
-    if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
-        journal = journal(title=title, body=body, timestamp=datetime.utcnow())
-        db.session.add(journal)
-        db.session.commit()
-        flash('Journal entry created!', 'success')
-        return redirect(url_for('journal_list'))
+@app.route('/journal', methods=['GET'])
+def get_journal():
+    return render_template('journal_list.html')
+
+@app.route('/journal', methods =['POST'])
+def create_journal():
+    return render_template('journal_html')
+
+@app.route('/journal/<id>', method=['PUT'])
+def update_journal():
+    return render_template('journal_html')
+
+@app.route('journal/<id>', method=['DELETE'])
+def delete_journal():
     return render_template('journal.html')
