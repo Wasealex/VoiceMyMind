@@ -1,0 +1,8 @@
+{% extends "base.html" %} {% block content %}
+<h1>Journal List</h1>
+<ul>
+  {% for journal in journals %}
+  <li>{{ journal.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
