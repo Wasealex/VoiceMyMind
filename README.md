@@ -11,6 +11,11 @@ VoiceMyMind is a mental health journal web application that provides awareness o
 
 ## Getting Started
 
+-requirements.txt contains all the dependencies used to create flask application
+
+- To run the application, install the dependencies using pip install -r requirements.txt
+- Run the application using python -m run.py
+
 ## Contributing
 
 We welcome contributions from the community! If you'd like to contribute, please follow these steps:
