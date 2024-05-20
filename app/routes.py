@@ -1,6 +1,5 @@
 from flask import render_template, redirect, url_for, flash, request
-from app import app, db
-from app.models import Journal
+from app import app
 from datetime import datetime
 
 @app.route('/')
