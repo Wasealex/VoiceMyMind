@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>{% block title %}{% endblock %}</title>
-    {% block head %}{% endblock %}
+    {% block head %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    {% endblock %}
   </head>
   <body>
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock %} {% block scripts %}
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    {% endblock %}
   </body>
 </html>

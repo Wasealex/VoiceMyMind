@@ -1,24 +1,26 @@
-from flask import render_template, redirect, url_for, flash, request
-from app import app
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 from datetime import datetime
 
-@app.route('/')
-@app.route('/home')
-def index():
-    return render_template('index.html')
+views = Blueprint('views', __name__)
 
-@app.route('/journal', methods=['GET'])
+@views.route('/')
+@views.route('/home')
+def home():
+    return render_template('home.html')
+
+@views.route('/journals', methods=['GET'])
 def get_journal():
+    # Fetch all journal entries from the database
     return render_template('journal_list.html')
 
-@app.route('/journal', methods =['POST'])
+@views.route('/journal', methods=['POST'])
 def create_journal():
-    return render_template('journal_html')
+    return render_template('journal.html')
 
-@app.route('/journal/<id>', method=['PUT'])
-def update_journal():
-    return render_template('journal_html')
+@views.route('/journal/<id>', methods=['PUT'])
+def update_journal(id):
+    return render_template('journal.html')
 
-@app.route('journal/<id>', method=['DELETE'])
-def delete_journal():
+@views.route('/journal/<id>', methods=['DELETE'])
+def delete_journal(id):
     return render_template('journal.html')
