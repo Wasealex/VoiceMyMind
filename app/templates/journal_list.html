@@ -1,8 +1,19 @@
 {% extends "base.html" %} {% block content %}
+<a href="{{ url_for('views.home') }}" class="btn btn-primary">home</a>
 <h1>Journal List</h1>
-<ul>
-  {% for journal in journals %}
-  <li>{{ journal.name }}</li>
+<ul class="list-group list-group-flash" id="journals">
+  {% for journal in user.journals %}
+  <li class="list-group-item">
+    <h3>{{ journal.title }}</h3>
+    <p>{{ journal.body }}</p>
+    <p>Date Created: {{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</p>
+    <form
+      action="{{ url_for('views.delete_journal', journal_id=journal.id) }}"
+      method="POST"
+    >
+      <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+  </li>
   {% endfor %}
 </ul>
 {% endblock %}

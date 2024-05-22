@@ -6,9 +6,10 @@ from sqlalchemy import func
 
 class User(UserMixin, db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    username = db.Column(db.String(64), index=True, unique=True)
+    first_name = db.Column(db.String(64), index=True)
+    last_name = db.Column(db.String(64), index=True)
     email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(1280))
     journals = db.relationship('Journal', backref='author', lazy='dynamic')
 
     def __repr__(self):
