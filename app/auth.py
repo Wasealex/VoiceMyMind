@@ -7,10 +7,9 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-    return render_template("login.html", user=current_user)
+    data = request.form
+    print(data)
+    return render_template("login.html")
 
 
 @auth.route('/logout')
@@ -25,6 +24,13 @@ def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-    return render_template("sign_up.html", user=current_user)
+        if password1 != password2:
+            flash('Passwords do not match', category='error')
+            return redirect(url_for('auth.sign_up'))
+        else:
+            flash('account created', category='success')
+        
+    return render_template("sign_up.html")

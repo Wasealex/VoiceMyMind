@@ -1,7 +1,5 @@
-# Generate a secure random secret key
-DEBUG = False
 
-    # Database configuration
+# Database configuration
 DB_HOST = 'localhost'
 DB_USER = 'voicemymind'
 DB_PASSWORD = 'VoiceMyMind'
