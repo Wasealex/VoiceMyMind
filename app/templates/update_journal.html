@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+<a href="{{ url_for('views.myjournal') }}" class="btn btn-primary"
+  >my journals</a
+>
+<h1>Update My Journal</h1>
+{% if journal %} Date Created: {{ journal.timestamp.strftime('%B %d, %Y
+%H:%M:%S') }}
+<form
+  method="POST"
+  action="{{ url_for('views.update_journal', journal_id=journal.id) }}"
+>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      value="{{ journal.title }}"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea class="form-control" id="body" name="body" rows="5" required>
+{{ journal.body }}</textarea
+    >
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+  <a
+    href="{{ url_for('views.delete_journal', journal_id=journal.id) }}"
+    class="btn btn-danger"
+    >Delete</a
+  >
+</form>
+{% else %}
+<p>No journal found.</p>
+{% endif %} {% endblock %}

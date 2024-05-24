@@ -20,7 +20,7 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             flash('Logged in successfully.', category='success')
             login_user(user, remember=True)
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.myjournal'))
         else:
             flash('Invalid email or password.', category='error')
     return render_template("login.html", user=current_user)
@@ -29,7 +29,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.welcome'))
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -51,6 +51,6 @@ def sign_up():
             db.session.commit()
             flash('account created', category='success')
             login_user(new_user, remember=True)
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.myjournal'))
         
     return render_template("sign_up.html", user=current_user)

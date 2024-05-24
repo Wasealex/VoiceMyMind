@@ -6,9 +6,14 @@ import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/home', methods=['GET', 'POST'])
+@views.route('/all', methods=['GET', 'POST'])
 @login_required
-def home():
+def myjournal():
+    return render_template('all.html', user=current_user)
+
+@views.route('/create', methods=['GET', 'POST'])
+@login_required
+def create_journal():
     if request.method == 'POST':
         title = request.form.get('title')
         body = request.form.get('body')
@@ -16,33 +21,25 @@ def home():
         db.session.add(new_journal)
         db.session.commit()
         flash('Journal entry created.', category='success')
-        return redirect(url_for('views.home'))
-    return render_template('home.html', user=current_user)
-
-@views.route('/update_journals', methods=['GET'])
-def get_journal():
-    # Fetch all journal entries from the database
-    return render_template('journal_list.html', user=current_user)
-
-@views.route('/journal', methods=['POST'])
-def create_journal():
-    return render_template('journal.html')
-@views.route('/journal_list/<uuid:journal_id>', methods=['POST'])
+        return redirect(url_for('views.myjournal'))
+    return render_template('create_journal.html', user=current_user)
+@views.route('/update/<uuid:journal_id>', methods=['GET', 'POST'])
 @login_required
 def update_journal(journal_id):
     journal = Journal.query.get(journal_id)
     if journal and journal.author == current_user:
-        journal.title = request.form.get('title')
-        journal.body = request.form.get('body')
-        db.session.commit()
-        flash('Journal entry updated.', category='success')
-        return redirect(url_for('views.get_journal'))
+        if request.method == 'POST':
+            journal.title = request.form.get('title')
+            journal.body = request.form.get('body')
+            db.session.commit()
+            flash('Journal entry updated.', category='success')
+            return redirect(url_for('views.myjournal', journal_id=journal_id))
+        return render_template('update_journal.html', journal=journal, user=current_user)
     else:
         flash('You do not have permission to update this journal entry.', category='error')
-        return redirect(url_for('views.home'))
+        return redirect(url_for('views.myjournal'))
 
-
-@views.route('/delete_journal/<uuid:journal_id>', methods=['POST'])
+@views.route('/delete/<uuid:journal_id>', methods=['GET', 'POST'])
 @login_required
 def delete_journal(journal_id):
     journal = Journal.query.get(journal_id)
@@ -50,7 +47,7 @@ def delete_journal(journal_id):
         db.session.delete(journal)
         db.session.commit()
         flash('Journal entry deleted.', category='success')
-        return redirect(url_for('views.get_journal'))
+        return redirect(url_for('views.myjournal'))
     else:
         flash('You do not have permission to delete this journal entry.', category='error')
-        return redirect(url_for('views.journal_list'))
+        return redirect(url_for('views.myjournal'))
