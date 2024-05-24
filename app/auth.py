@@ -6,6 +6,11 @@ from app.models import *
 
 auth = Blueprint('auth', __name__)
 
+@auth.route('/')
+@auth.route('/welcome')
+def welcome():
+    return render_template('welcome.html', user=current_user)
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
