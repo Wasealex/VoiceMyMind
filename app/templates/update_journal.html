@@ -1,7 +1,4 @@
 {% extends "base.html" %} {% block content %}
-<a href="{{ url_for('views.myjournal') }}" class="btn btn-primary"
-  >my journals</a
->
 <h1>Update My Journal</h1>
 {% if journal %} Date Created: {{ journal.timestamp.strftime('%B %d, %Y
 %H:%M:%S') }}
@@ -35,4 +32,5 @@
 </form>
 {% else %}
 <p>No journal found.</p>
-{% endif %} {% endblock %}
+{% endif %} 
+{% endblock %}

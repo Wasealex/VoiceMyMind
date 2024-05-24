@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+<div class="create-container content-wrapper">
 <h1>my journals</h1>
 <ul>
   {% for journal in user.journals|sort(reverse=True, attribute='timestamp') %}
@@ -14,4 +15,5 @@
   </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

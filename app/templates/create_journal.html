@@ -1,16 +1,19 @@
-{% extends "base.html" %} {% block title %}Welcome{% endblock %} {% block
-content %}
-<h1>Welcome to your journal</h1>
-<h2>What is on your mind?</h2>
-<form method="POST">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label for="body">Body</label>
-    <textarea name="body" id="body" class="form-control"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Add journal entry</button>
-</form>
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="create-container content-wrapper">
+  <h1>Welcome to your journal</h1>
+  <h2>What is on your mind?</h2>
+  <form method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="body">Body</label>
+      <textarea name="body" id="body" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add journal entry</button>
+  </form>
+</div>
 {% endblock %}
