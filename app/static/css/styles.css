@@ -1,7 +1,7 @@
 .create-container {
-  background-image: url('/static/images/journalbook4.jpg');
-  background-size: 100vw 100vh;
-  background-position: 30%center;
+  background-image: url('/static/images/welcomepaper.jpg');
+  background-size: 100% 100%;
+  background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
   display: flex;
@@ -19,8 +19,8 @@
 }
 
 .welcome-container {
-  background-image: url('/static/images/openbook3.jpg');
-  background-size: cover;
+  background-image: url('/static/images/welcomepaper.jpg');
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
@@ -28,4 +28,9 @@
   flex-direction: column;
   justify-content: auto;
   font-family: 'Arial', sans-serif;
+}
+
+.base-container {
+  background-image: url('/static/images/blackbg2.jpg');
+  background-size: 100% 100%;
 }

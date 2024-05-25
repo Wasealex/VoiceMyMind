@@ -1,6 +1,20 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 <div class="welcome-container content-wrapper">
-<h1>Welcome!</h1>
-<p>This is the welcome page.</p>
+    <h1 align="center">Welcome to VoiceMyMind!</h1>
+    <p>Thank you for choosing VoiceMyMind, a web application dedicated to promoting mental health awareness and providing a platform for journal taking.</p>
+    
+    <h2>Benefits of VoiceMyMind</h2>
+    <ul>
+        <li><strong>Mental Health Awareness:</strong> VoiceMyMind aims to raise awareness about mental health and its importance in our lives. We provide resources, articles, and tips to help you understand and improve your mental well-being.</li>
+        <li><strong>Journal Taking Ability:</strong> With VoiceMyMind, you can easily create and maintain a digital journal. Document your thoughts, feelings, and experiences in a safe and private space. Journaling can be a powerful tool for self-reflection, personal growth, and stress management.</li>
+        <li><strong>User-Friendly Interface:</strong> Our web application features a user-friendly interface that makes it easy to navigate and use. Whether you're new to journaling or an experienced user, VoiceMyMind provides a seamless experience.</li>
+        <li><strong>Secure and Private:</strong> We prioritize your privacy and security. Your journal entries are encrypted and stored securely, ensuring that your personal information remains confidential.</li>
+        <li><strong>Community Support:</strong> Connect with like-minded individuals through our community forums. Share your experiences, seek advice, and provide support to others on their mental health journey.</li>
+    </ul>
+    
+    <h2>Get Started</h2>
+    <p>To start using VoiceMyMind and unlock the benefits of mental health awareness and journal taking, simply sign up for an account. It's free and only takes a few minutes!</p>
+    <a href="{{ url_for('auth.sign_up') }}" class="btn btn-primary">Sign Up</a>
 </div>
 {% endblock %}
