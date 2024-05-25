@@ -1,5 +1,10 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block title%} about {% endblock %}
 {% block content %}
+<section>
+    <article>
+        <img src="static/images/brand.png">
+    </article>
+</section>
 <div class="welcome-container content-wrapper">
     <h1 align="center">Welcome to VoiceMyMind!</h1>
     <p>Thank you for choosing VoiceMyMind, a web application dedicated to promoting mental health awareness and providing a platform for journal taking.</p>
@@ -16,5 +21,8 @@
     <h2>Get Started</h2>
     <p>To start using VoiceMyMind and unlock the benefits of mental health awareness and journal taking, simply sign up for an account. It's free and only takes a few minutes!</p>
     <a href="{{ url_for('auth.sign_up') }}" class="btn btn-primary">Sign Up</a>
+    <h2>Already have an account?
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary" style="color: rgb(42, 165, 79)">log in</a>
+    </h2>
 </div>
 {% endblock %}

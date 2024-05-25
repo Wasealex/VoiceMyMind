@@ -11,6 +11,10 @@ auth = Blueprint('auth', __name__)
 def welcome():
     return render_template('welcome.html', user=current_user)
 
+@auth.route('/about')
+def about():
+    return render_template('about.html', user=current_user)
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
