@@ -1,28 +1,26 @@
-{% extends "base.html" %} {% block title%} about {% endblock %}
+{% extends "base.html" %} 
+{% block title%} welcome {% endblock %}
+
 {% block content %}
-<section>
-    <article>
-        <img src="static/images/brand.png">
-    </article>
-</section>
-<div class="welcome-container content-wrapper">
-    <h1 align="center">Welcome to VoiceMyMind!</h1>
-    <p>Thank you for choosing VoiceMyMind, a web application dedicated to promoting mental health awareness and providing a platform for journal taking.</p>
+<div class="content-wrapper">
     
-    <h2>Benefits of VoiceMyMind</h2>
+    <h1>Welcome<br>to<br>VoiceMyMind!</h1>
+        
+    <img src="static/images/brand.png" alt="VoiceMyMind">
+
+    <h1>Thank you for choosing VoiceMyMind</h1> 
     <ul>
-        <li><strong>Mental Health Awareness:</strong> VoiceMyMind aims to raise awareness about mental health and its importance in our lives. We provide resources, articles, and tips to help you understand and improve your mental well-being.</li>
-        <li><strong>Journal Taking Ability:</strong> With VoiceMyMind, you can easily create and maintain a digital journal. Document your thoughts, feelings, and experiences in a safe and private space. Journaling can be a powerful tool for self-reflection, personal growth, and stress management.</li>
-        <li><strong>User-Friendly Interface:</strong> Our web application features a user-friendly interface that makes it easy to navigate and use. Whether you're new to journaling or an experienced user, VoiceMyMind provides a seamless experience.</li>
-        <li><strong>Secure and Private:</strong> We prioritize your privacy and security. Your journal entries are encrypted and stored securely, ensuring that your personal information remains confidential.</li>
-        <li><strong>Community Support:</strong> Connect with like-minded individuals through our community forums. Share your experiences, seek advice, and provide support to others on their mental health journey.</li>
+        <li>promoting mental health awareness</li> 
+        <li>providing a platform for journal taking</li>
     </ul>
-    
     <h2>Get Started</h2>
-    <p>To start using VoiceMyMind and unlock the benefits of mental health awareness and journal taking, simply sign up for an account. It's free and only takes a few minutes!</p>
-    <a href="{{ url_for('auth.sign_up') }}" class="btn btn-primary">Sign Up</a>
+    <h5>To start using VoiceMyMind and unlock the benefits of mental health awareness and journal taking.</h5>
+        <br>
+        <br> 
+        <h2>It's free and only takes a few minutes!
+            <a href="{{ url_for('auth.sign_up') }}" class="btn btn-primary" style="display: block; width: 100%; height: 50px; font-size: 28px;">Sign Up</a>
     <h2>Already have an account?
-        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary" style="color: rgb(42, 165, 79)">log in</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary" style="color: rgb(42, 165, 79); font-size: 20px;">log in</a>
     </h2>
 </div>
 {% endblock %}
