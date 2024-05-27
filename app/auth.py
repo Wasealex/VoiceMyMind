@@ -15,6 +15,10 @@ def welcome():
 def about():
     return render_template('about.html', user=current_user)
 
+@auth.route('/healthtips', methods=['GET'])
+def healthtips():
+    return render_template('health_tips.html', user=current_user)
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
