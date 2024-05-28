@@ -1,39 +1,52 @@
 {% extends "base.html" %} {% block title%} welcome {% endblock %} {% block
 content %}
 <div class="content-wrapper">
-  <h1>Welcome<br />to<br />VoiceMyMind!</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <ul>
+        <li>Promoting Mental Health Awareness</li>
+        <li>Platform For Journal Taking</li>
+      </ul>
+      <img id="brand" src="static/images/brand.png" alt="VoiceMyMind" />
+    </div>
+    <div class="col-md-6">
+      <img
+        src="static/images/journalbook5.jpg"
+        alt="journal book"
+        width="80%"
+        height="80%"
+      />
+    </div>
+  </div>
 
-  <img src="static/images/brand.png" alt="VoiceMyMind" />
-
-  <h1>Thank you for choosing VoiceMyMind</h1>
-  <ul>
-    <li>Promoting mental health awareness</li>
-    <li>Providing a platform for journal taking</li>
-  </ul>
-  <h2>Get Started</h2>
-  <h5>
-    To start using VoiceMyMind and unlock the benefits of mental health
-    awareness and journal taking.
-  </h5>
-  <br />
-  <br />
-  <h2>
-    It's free and only takes a few minutes!
+  <div class="row">
+    <div class="col-md-5">
+      <h2>Get Started</h2>
+      <h3>
+        To start using Voice My Mind and unlock the benefits of mental health
+        awareness and journal taking.
+      </h3>
+    </div>
+    <div class="col-md-7">
+        <h2>
+    Take a few minutes to get started
     <a
       href="{{ url_for('auth.sign_up') }}"
-      class="btn btn-primary"
-      style="display: block; width: 100%; height: 50px; font-size: 28px"
+      class="btn btn-outline-journal"
+      style="font-size: 30px"
       >Sign Up</a
     >
     <h2>
       Already have an account?
       <a
         href="{{ url_for('auth.login') }}"
-        class="btn btn-outline-primary"
-        style="color: rgb(42, 165, 79); font-size: 20px"
-        >log in</a
+        class="btn btn-outline-journal"
+        style="color: rgb(42, 165, 79); font-size: 30px"
+        >Log In</a
       >
     </h2>
+    </div>
+  </div>
+
     {% endblock %}
-  </h2>
 </div>

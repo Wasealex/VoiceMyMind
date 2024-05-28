@@ -83,7 +83,7 @@ body {
   letter-spacing: 10px;
   animation: fadeIn 2s ease-in-out;
 }
-.content-wrapper img {
+.content-wrapper #brand {
   width: 50%;
   height: auto;
   border-radius: 8px;
@@ -212,6 +212,24 @@ body {
   background-color: #4caf50;
   border: none;
   color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline-journal {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  width: 200px;
+  border: #4caf50 solid;
+  color: #4caf50;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
