@@ -55,6 +55,12 @@
               >
               <a
                 class="nav-link navwrap"
+                id="healthtips"
+                href="{{ url_for('auth.healthtips') }}"
+                >healthtips</a
+              >
+              <a
+                class="nav-link navwrap"
                 id="logout"
                 href="{{ url_for('auth.logout') }}"
                 >Logout</a
@@ -79,11 +85,10 @@
                 href="{{ url_for('auth.about') }}"
                 >about</a
               >
-              <a
-                class="nav-link navwrap"
-                id="healthtips"
-                href="{{ url_for('auth.healthtips') }}"
-                >healthtips</a
+              <span
+                id="user-firstname"
+                style="position: absolute; top: 0; right: 0; margin: 1em"
+                ><a href="user_profile.html">{{ user.first_name }}</a></span
               >
             </div>
           </div>

@@ -132,3 +132,100 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   background-color: rgba(129, 124, 124, 0.5);
 }
+.show-wrapper {
+  background-image: url("/static/images/paperbg.jpg");
+  background-size: 100% 100%;
+  min-height: 100vh;
+  color: rgba(1, 63, 29, 0.8);
+  padding: 4rem;
+  border-radius: 8px;
+  text-align: left;
+  margin: 2rem;
+}
+
+.mood-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.mood-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.mood-label input[type="radio"] {
+  display: none;
+}
+
+.mood-label .mood-emoji {
+  transition: transform 0.3s ease;
+}
+
+.mood-label input[type="radio"]:checked + .mood-emoji {
+  transform: scale(1.2);
+}
+
+.btn-journal {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  width: 200px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-journal:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-journal:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+.btn-journal-danger {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  width: 200px;
+  background-color: #e90e0e;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-journal-danger:hover {
+  background-color: #912308;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-journal-danger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #912308;
+}

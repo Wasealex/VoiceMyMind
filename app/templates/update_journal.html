@@ -1,35 +1,43 @@
 {% extends "base.html" %} {% block content %}
-<h1>Update My Journal</h1>
-{% if journal %} Date Created: {{ journal.timestamp.strftime('%B %d, %Y
-%H:%M:%S') }}
-<form
-  method="POST"
-  action="{{ url_for('views.update_journal', journal_id=journal.id) }}"
->
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input
-      type="text"
-      class="form-control"
-      id="title"
-      name="title"
-      value="{{ journal.title }}"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="body">Body</label>
-    <textarea class="form-control" id="body" name="body" rows="5" required>
-{{ journal.body }}</textarea
-    >
-  </div>
-  <button type="submit" class="btn btn-primary">Update</button>
-  <a
-    href="{{ url_for('views.delete_journal', journal_id=journal.id) }}"
-    class="btn btn-danger"
-    >Delete</a
+<div class="content-wrapper">
+  <h1>Update My Journal</h1>
+
+  {% if journal %}
+  <h2>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h2>
+  <p>Anything you missed?</p>
+  <form
+    method="POST"
+    action="{{ url_for('views.update_journal', journal_id=journal.id) }}"
   >
-</form>
-{% else %}
-<p>No journal found.</p>
-{% endif %} {% endblock %}
+    <div class="form-group">
+      <label for="title"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        value="{{ journal.title }}"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="body"></label>
+      <textarea class="form-control" id="body" name="body" rows="5" required>
+{{ journal.body }}</textarea
+      >
+    </div>
+
+    <button type="submit" class="btn-journal">Update</button>
+
+    <a
+      href="{{ url_for('views.delete_journal', journal_id=journal.id) }}"
+      class="btn-journal-danger"
+      >Delete</a
+    >
+  </form>
+  {% else %}
+  <h1>No journal found.</h1>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Journal
-from app import db
+from app import db, sr
 import json
 
 views = Blueprint('views', __name__)
@@ -17,7 +17,8 @@ def create_journal():
     if request.method == 'POST':
         title = request.form.get('title')
         body = request.form.get('body')
-        new_journal = Journal(title=title, body=body, author=current_user, user_id=current_user.id)
+        image_file = request.files['image_file']
+        new_journal = Journal(title=title, body=body, image_file=image_file, author=current_user, user_id=current_user.id)
         db.session.add(new_journal)
         db.session.commit()
         flash('Journal entry created.', category='success')
@@ -51,3 +52,19 @@ def delete_journal(journal_id):
     else:
         flash('You do not have permission to delete this journal entry.', category='error')
         return redirect(url_for('views.myjournal'))
+
+@views.route('/voice-to-text', methods=['POST'])
+def voice_to_text():
+    # Get the audio file from the request
+    audio_file = request.files['audio']
+    
+    # Initialize the recognizer
+    recognizer = sr.Recognizer()
+    
+    # Convert audio to text
+    with sr.AudioFile(audio_file) as source:
+        audio_data = recognizer.record(source)
+        text = recognizer.recognize_google(audio_data)
+    
+    # Return the text as a response
+    return text
