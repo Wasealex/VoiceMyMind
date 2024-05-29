@@ -13,6 +13,7 @@ content %}
         placeholder="Enter title for your journal"
       />
     </div>
+    <br />
     <div class="form-group">
       <textarea
         name="body"
@@ -21,6 +22,15 @@ content %}
         style="height: 100px"
         placeholder="What's on your mind?"
       ></textarea>
+      <div class="form-group">
+        <span>Click 'Record' to transcribe</span>
+        <button type="button" id="recordButton" class="btn btn-journal">
+          Record
+        </button>
+        <button type="button" id="stopButton" class="btn btn-danger" disabled>
+          Stop
+        </button>
+      </div>
     </div>
     <div class="mood-selector">
       <label class="mood-label">
@@ -57,4 +67,37 @@ content %}
     <button type="submit" class="btn-journal">Add journal entry</button>
   </form>
 </div>
+
+<script>
+  const recordButton = document.getElementById("recordButton");
+  const stopButton = document.getElementById("stopButton");
+  const transcription = document.getElementById("transcription");
+  let recognition;
+
+  if ("webkitSpeechRecognition" in window) {
+    recognition = new webkitSpeechRecognition();
+  } else if ("SpeechRecognition" in window) {
+    recognition = new SpeechRecognition();
+  } else {
+    console.log("Speech recognition not supported");
+  }
+
+  recordButton.addEventListener("click", () => {
+    recognition.start();
+    recordButton.disabled = true;
+    stopButton.disabled = false;
+  });
+
+  stopButton.addEventListener("click", () => {
+    recognition.stop();
+    recordButton.disabled = false;
+    stopButton.disabled = true;
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    body.value = transcript;
+  };
+</script>
+
 {% endblock %}
