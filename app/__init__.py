@@ -52,6 +52,6 @@ def create_app():
 
     @app.template_filter('datetime')
     def jinja2_datetime_filter(date_string):
-        return datetime.strptime(date_string, '%Y-%m-%d')
+        return datetime.strptime(date_string, '%Y-%m-%d %H:%M')
 
     return app

@@ -305,6 +305,7 @@ a,
 a:hover,
 a:focus,
 a:active {
+  font-size: x-large;
   color: #333;
   text-decoration: none;
 }

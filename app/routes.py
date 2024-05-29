@@ -1,4 +1,3 @@
-from datetime import timedelta
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Journal
@@ -84,7 +83,7 @@ def calendar_view():
             events[month_year] = []
         events[month_year].append({
             'title': entry.title,
-            'date': entry.timestamp.strftime('%Y-%m-%d'),
+            'date': entry.timestamp.strftime('%Y-%m-%d %H:%M'),
             'url': url_for('views.update_journal', journal_id=entry.id)
         })
 
