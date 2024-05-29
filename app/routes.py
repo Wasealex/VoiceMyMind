@@ -1,8 +1,9 @@
+from datetime import timedelta
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Journal
 from app import db, sr
-import json
+
 
 views = Blueprint('views', __name__)
 
@@ -68,3 +69,23 @@ def voice_to_text():
     
     # Return the text as a response
     return text
+
+@views.route('/calendar', methods=['GET', 'POST'])
+@login_required
+def calendar_view():
+    # Fetch all journal entries for the current user
+    journal_entries = Journal.query.filter_by(author=current_user).all()
+
+    # Create a dictionary of events grouped by month
+    events = {}
+    for entry in journal_entries:
+        month_year = entry.timestamp.strftime('%Y-%m')
+        if month_year not in events:
+            events[month_year] = []
+        events[month_year].append({
+            'title': entry.title,
+            'date': entry.timestamp.strftime('%Y-%m-%d'),
+            'url': url_for('views.update_journal', journal_id=entry.id)
+        })
+
+    return render_template('calendar.html', events=events, user=current_user)

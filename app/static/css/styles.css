@@ -275,3 +275,36 @@ body {
   outline: none;
   box-shadow: 0 0 0 3px #912308;
 }
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+.calendar-day {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.calendar-day h3 {
+  margin-top: 0;
+}
+.calendar-day ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.calendar-day ul li a {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: #333;
+  text-decoration: none;
+}

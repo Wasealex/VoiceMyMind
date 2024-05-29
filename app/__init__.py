@@ -1,6 +1,7 @@
 """
 Initializes the Flask application.
 """
+from datetime import datetime
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -48,5 +49,9 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+    @app.template_filter('datetime')
+    def jinja2_datetime_filter(date_string):
+        return datetime.strptime(date_string, '%Y-%m-%d')
 
     return app
