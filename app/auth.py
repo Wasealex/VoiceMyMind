@@ -29,7 +29,7 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             flash('Logged in successfully.', category='success')
             login_user(user, remember=True)
-            return redirect(url_for('views.myjournal'))
+            return redirect(url_for('views.create_journal'))
         else:
             flash('Invalid email or password.', category='error')
     return render_template("login.html", user=current_user)
@@ -60,6 +60,6 @@ def sign_up():
             db.session.commit()
             flash('account created', category='success')
             login_user(new_user, remember=True)
-            return redirect(url_for('views.myjournal'))
+            return redirect(url_for('views.create_journal'))
         
     return render_template("sign_up.html", user=current_user)

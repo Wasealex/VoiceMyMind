@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block title %}Welcome{% endblock %} {% block
 content %}
-<div class="content-wrapper">
-  <h2>What is on your mind?</h2>
+<div class="content-wrapper bg-light py-6">
+  <h2 style="text-align: center">What is on your mind?</h2>
+  <br />
   <form method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <input
@@ -11,6 +12,7 @@ content %}
         class="form-control"
         style="height: 50px"
         placeholder="Enter title for your journal"
+        required
       />
     </div>
     <br />
@@ -21,18 +23,28 @@ content %}
         class="form-control"
         style="height: 100px"
         placeholder="What's on your mind?"
+        required
       ></textarea>
       <div class="form-group">
         <span>Click 'Record' to transcribe</span>
-        <button type="button" id="recordButton" class="btn btn-journal">
+        <button type="button" id="recordButton" class="btn btn-green-journal">
           Record
         </button>
-        <button type="button" id="stopButton" class="btn btn-danger" disabled>
+        <button
+          type="button"
+          id="stopButton"
+          class="btn-journal-danger"
+          disabled
+        >
           Stop
         </button>
       </div>
     </div>
+    <br />
+    <br />
+
     <div class="mood-selector">
+      <h2>Select Your Emotion</h2>
       <label class="mood-label">
         <input type="radio" name="mood" value="1" />
         <span class="mood-emoji">😞</span>
@@ -54,25 +66,61 @@ content %}
         <span class="mood-emoji">😆</span>
       </label>
     </div>
-    <div class="form-group">
-      <label for="image_file" class="form-label">upload a journal image</label>
-      <input
-        type="file"
+    <br />
+    <br />
+    <div class="form-group"></div>
+    <br />
+    <div class="file-upload">
+      <button
+        class="file-upload-btn"
+        type="button"
+        onclick="$('.file-upload-input').trigger( 'click' )"
         name="image_file"
         id="image_file"
-        class="form-control form-control-lg"
-        placeholder="Select image file"
-      />
+      >
+        Add Image
+      </button>
+
+      <div class="file-upload-placeholder">
+        <input
+          class="file-upload-input"
+          type="file"
+          onchange="readURL(this);"
+          accept="image/*"
+          name="image_file"
+          id="image_file"
+        />
+        <div class="drag-text">
+          <h3>Drag and drop a file or select add Image</h3>
+        </div>
+      </div>
+
+      <div class="file-upload-preview">
+        <img class="file-upload-image" src="#" alt="your image" />
+        <div class="file-upload-remove">
+          <button type="button" onclick="removeUpload()" class="remove-image">
+            Remove <span class="image-title">Uploaded Image</span>
+          </button>
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn-journal">Add journal entry</button>
+    <br />
+    <br />
+    <button type="submit" class="btn-create">Add journal entry</button>
   </form>
 </div>
+
+<script
+  class="jsbin"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+></script>
 
 <script>
   const recordButton = document.getElementById("recordButton");
   const stopButton = document.getElementById("stopButton");
-  const transcription = document.getElementById("transcription");
+  const transcription = document.getElementById("body");
   let recognition;
+  let isRecording = false;
 
   if ("webkitSpeechRecognition" in window) {
     recognition = new webkitSpeechRecognition();
@@ -82,22 +130,83 @@ content %}
     console.log("Speech recognition not supported");
   }
 
+  // Set continuous mode and interim results
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
   recordButton.addEventListener("click", () => {
-    recognition.start();
-    recordButton.disabled = true;
-    stopButton.disabled = false;
+    if (!isRecording) {
+      recognition.start();
+      recordButton.disabled = true;
+      stopButton.disabled = false;
+      isRecording = true;
+    }
   });
 
   stopButton.addEventListener("click", () => {
-    recognition.stop();
-    recordButton.disabled = false;
-    stopButton.disabled = true;
+    if (isRecording) {
+      recognition.stop();
+      recordButton.disabled = false;
+      stopButton.disabled = true;
+      isRecording = false;
+    }
   });
 
   recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    body.value = transcript;
+    let transcript = "";
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      if (event.results[i].isFinal) {
+        transcript += event.results[i][0].transcript;
+      }
+    }
+    transcription.value += transcript;
   };
+
+  recognition.onerror = (event) => {
+    console.error("Speech recognition error:", event.error);
+  };
+
+  recognition.onend = () => {
+    if (isRecording) {
+      recognition.start();
+    }
+  };
+</script>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      // if input is file, files has content
+      var inputFileData = input.files[0]; // shortcut
+      var reader = new FileReader(); // FileReader() : init
+      reader.onload = function (e) {
+        /* FileReader : set up ************** */
+        console.log("e", e);
+        $(".file-upload-placeholder").hide(); // call for action element : hide
+        $(".file-upload-image").attr("src", e.target.result); // image element : set src data.
+        $(".file-upload-preview").show(); // image element's container : show
+        $(".image-title").html(inputFileData.name); // set image's title
+      };
+      console.log("input.files[0]", input.files[0]);
+      reader.readAsDataURL(inputFileData); // reads target inputFileData, launch `.onload` actions
+    } else {
+      removeUpload();
+    }
+  }
+
+  function removeUpload() {
+    var $clone = $(".file-upload-input").val("").clone(true); // create empty clone
+    $(".file-upload-input").replaceWith($clone); // reset input: replaced by empty clone
+    $(".file-upload-placeholder").show(); // show placeholder
+    $(".file-upload-preview").hide(); // hide preview
+  }
+
+  // Style when drag-over
+  $(".file-upload-placeholder").bind("dragover", function () {
+    $(".file-upload-placeholder").addClass("image-dropping");
+  });
+  $(".file-upload-placeholder").bind("dragleave", function () {
+    $(".file-upload-placeholder").removeClass("image-dropping");
+  });
 </script>
 
 {% endblock %}

@@ -138,28 +138,6 @@ body {
   }
 }
 
-.health-wrapper {
-  margin-top: 64px;
-  background-image: url("/static/images/healthbg.jpg");
-  background-size: 100% 100%;
-  min-height: 100vh;
-  color: rgba(1, 63, 29, 0.8);
-  padding: 4rem;
-  border-radius: 8px;
-  text-align: left;
-  margin: 2rem;
-}
-.health-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  background-color: rgba(129, 124, 124, 0.5);
-}
 .show-wrapper {
   background-image: url("/static/images/paperbg.jpg");
   background-size: 100% 100%;
@@ -173,8 +151,8 @@ body {
 
 .mood-selector {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   font-size: 2rem;
 }
 
@@ -182,7 +160,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 1rem;
+  margin: 0 2rem;
+  border: #b9beb8 solid;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -191,14 +173,14 @@ body {
 }
 
 .mood-label .mood-emoji {
-  transition: transform 0.3s ease;
+  transition: transform 0.9s ease;
 }
 
 .mood-label input[type="radio"]:checked + .mood-emoji {
-  transform: scale(1.2);
+  transform: scale(2.2);
 }
 
-.btn-journal {
+.btn-green-journal {
   display: inline-block;
   padding: 12px 24px;
   font-size: 16px;
@@ -235,13 +217,13 @@ body {
   cursor: pointer;
 }
 
-.btn-journal:hover {
+.btn-green-journal:hover {
   background-color: #3e8e41;
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-.btn-journal:focus {
+.btn-green-journal:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
 }
@@ -276,29 +258,34 @@ body {
   box-shadow: 0 0 0 3px #912308;
 }
 
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+.btn-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
   text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  width: 100%; /* Modified code */
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.calendar-day {
-  border: 1px solid #ccc;
-  padding: 10px;
+
+.btn-create:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(6, 148, 60, 0.15);
 }
-.calendar-day h3 {
-  margin-top: 0;
-}
-.calendar-day ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.calendar-day ul li a {
-  display: block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+
+.btn-create:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
 }
 
 a,
@@ -308,4 +295,539 @@ a:active {
   font-size: x-large;
   color: #333;
   text-decoration: none;
+}
+
+/* Journal Wrapper */
+.journal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Journal Grid */
+.journal-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.journal-grid h1 {
+  font-size: 44px;
+  font-weight: bold;
+}
+
+/* Journal Card */
+.journal-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #534d4d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 20px;
+  align-content: center;
+  justify-content: center;
+  width: 80%;
+  overflow: hidden;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+/* Journal Header */
+.journal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.journal-header h3 {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.journal-header h5 {
+  font-size: 18px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Journal Image */
+.journal-image {
+  width: 20%;
+  height: 20%;
+  overflow: hidden;
+}
+
+.journal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Journal Content */
+.journal-content {
+  padding: 20px;
+}
+
+.journal-mood {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.journal-content p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.5;
+  font-size: 23px;
+  color: #666;
+  text-align: justify;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+/* Buttons */
+.btn-green-journal {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-green-journal:hover {
+  background-color: #45a049;
+}
+.btn-journal {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-journal:hover {
+  background-color: #0056b3;
+}
+
+.file-upload {
+  background-color: #ffffff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* BUTTON */
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #1fb264;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #15824b;
+  transition: all 0.2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.file-upload-btn:hover {
+  background: #1aa059;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.file-upload-btn:active {
+  border: 0;
+  transition: all 0.2s ease;
+}
+
+/* PLACEHOLDER */
+.file-upload-preview {
+  display: none;
+  text-align: center;
+}
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-upload-placeholder {
+  margin-top: 20px;
+  border: 4px dashed #1fb264;
+  position: relative;
+}
+.image-dropping,
+.file-upload-placeholder:hover {
+  background-color: #1fb264;
+  border: 4px dashed #fff;
+}
+.drag-text {
+  text-align: center;
+}
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824b;
+  padding: 60px 0;
+}
+
+/* PREVIEW */
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+/* REMOVE */
+.file-upload-remove {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all 0.2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all 0.2s ease;
+}
+
+/* Calendar Styles */
+.calendar-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.calendar {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.calendar th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  vertical-align: top;
+  height: 100px;
+}
+
+.calendar td h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.calendar td ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.calendar td li {
+  margin-bottom: 5px;
+}
+
+.calendar td li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.calendar td li a:hover {
+  text-decoration: underline;
+}
+
+.calendar td li span {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .calendar td {
+    height: auto;
+  }
+}
+
+/* Content Wrapper */
+.my-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Journal Form Styles */
+.my-journal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.my-journal-form .my-form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.my-journal-form .my-form-label {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.my-journal-form .my-form-control {
+  display: block;
+  width: 100%;
+  height: 40%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.my-journal-form .my-btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+/* Table Styles */
+.table.table-striped {
+  border-collapse: separate;
+  border-spacing: 0;
+
+  width: 100%;
+}
+
+.table.table-striped th,
+.table.table-striped td {
+  padding: 12px 80px;
+  text-align: left;
+  border: 1px solid #e2dfdf;
+
+  border-radius: 8px;
+
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.table.table-striped tr:nth-child(even) {
+  background-color: #afaeae;
+}
+
+/* Health Wrapper Styles */
+.health-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin-top: 80px;
+  padding-top: 20px;
+  width: 100%;
+  background-color: #afaeae;
+  border: 1px solid #e2dfdf;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Button Styles */
+.catagory {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 3px solid transparent;
+  border-radius: 0.25rem;
+  color: #212529;
+  background-color: #e9ecef;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.catagory:hover {
+  color: #212529;
+  background-color: #d3d9df;
+  border-color: #c6c9ce;
+}
+
+.catagory:focus,
+.catagory.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(206, 212, 218, 0.5);
+}
+.health-topic {
+  position: relative;
+  background-color: rgb(245, 241, 235);
+  width: 100%;
+  padding: 20px;
+  margin-top: 40px 120px;
+  border: 1px solid #e2dfdf;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  animation: fadeIn 3.5s ease-in-out;
+}
+.health-topic p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.5;
+  font-size: 23px;
+  color: #666;
+  text-align: justify;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  animation: fadeIn 3.5s ease-in-out;
+  object-fit: cover;
+  object-position: center;
+}
+.health-topic h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 2.5rem;
+  color: #666;
+  text-align: justify;
+  margin-bottom: 50px;
+  animation: fadeIn 3.5s ease-in-out;
+}
+.benefit-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 80px auto;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 2px;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+/* team-wrapper.css */
+
+.team-wrapper {
+  background-color: #f8f9fa;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-wrapper .card:hover {
+  transform: translateY(-0.25rem);
+}
+
+.team-wrapper .card-img-top {
+  object-fit: cover;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-body {
+  padding: 1.5rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.team-wrapper .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.team-wrapper .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004a9b;
 }

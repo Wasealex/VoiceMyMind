@@ -1,34 +1,59 @@
-{% extends "base.html" %} {% block title %} my journals {% endblock %} {% block
+{% extends "base.html" %} {% block title %} My Journals {% endblock %} {% block
 content %}
-<div class="show-wrapper">
-  <h1>my journals</h1>
-  <a href="{{ url_for('views.calendar_view') }}" class="btn-journal"
-    >View Calendar</a
-  >
-  <ul>
-    {% for journal in user.journals|sort(reverse=True, attribute='timestamp') %}
-    {% if journal %}
-    <li>
-      <h1>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h1>
-      <h2>{{ journal.title }}</h2>
-      <p>{{ journal.body }}</p>
-      <p>
+
+<div class="journal-wrapper">
+  <div class="journal-grid">
+    <h1>My Journals</h1>
+    <div style="display: flex; justify-content: flex-end">
+      <a href="{{ url_for('views.calendar_view') }}" class="btn-green-journal"
+        >Edit My Journals</a
+      >
+    </div>
+  </div>
+  {% if user.journals %} {% for journal in user.journals|sort(reverse=True,
+  attribute='timestamp') %}
+  <div class="journal-card">
+    <div class="journal-header">
+      <h3>{{ journal.title }}</h3>
+      {% if journal.image_file %}
+      <div class="journal-image">
+        <img
+          src="{{ url_for('static', filename=journal.image_file) }}"
+          alt="image"
+        />
+      </div>
+      {% else %}
+      <div class="journal-image">
+        <img
+          src="{{ url_for('static', filename='uploads/default.jpg') }}"
+          alt="default"
+        />
+      </div>
+      {% endif %}
+      <h5>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h5>
+    </div>
+    <div class="journal-content">
+      <div class="journal-mood">
         {% if journal.mood == 1 %} 😔 {% elif journal.mood == 2 %} 😐 {% elif
         journal.mood == 3 %} 🙂 {% elif journal.mood == 4 %} 😃 {% elif
         journal.mood == 5 %} 😄 {% endif %}
-      </p>
-      <a
-        href="{{ url_for('views.update_journal', journal_id=journal.id) }}"
-        class="btn-journal"
-        >edit</a
-      >
-      <div>
-        {% if journal.image_file %}
-        <img src="{{ journal.image_file }}" alt="Journal Image" />
-        {% endif %}
       </div>
-    </li>
-    {% endif %} {% endfor %}
-  </ul>
-  {% endblock %}
+      <p>{{ journal.body }}</p>
+    </div>
+  </div>
+  {% endfor %} {% endif %} {% if not user.journals %}
+  <div class="journal-wrapper">
+    <div class="journal-grid">
+      <h2>
+        Seems You don't have any journals yet!!!
+        <a
+          href="{{ url_for('views.create_journal') }}"
+          class="btn-green-journal"
+          >Create a new one</a
+        >
+      </h2>
+    </div>
+  </div>
+  {% endif %}
 </div>
+{% endblock %}
