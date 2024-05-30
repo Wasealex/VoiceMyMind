@@ -1,4 +1,5 @@
 import os
+import uuid
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
@@ -21,9 +22,11 @@ def create_journal():
         body = request.form.get('body')
         image_file = request.files['image_file']
         if image_file and allowed_file(image_file.filename):
+            uniqueid = uuid.uuid4().hex
             filename = secure_filename(image_file.filename)
-            image_file.save(os.path.join('app/static/uploads', filename))
-            image_file = f'uploads/{filename}'
+            full_filename = f"{filename}_{uniqueid}"
+            image_file.save(os.path.join('app/static/uploads', full_filename))
+            image_file = f'uploads/{full_filename}'
         else:
             image_file = None
         mood = request.form.get('mood')
