@@ -768,3 +768,66 @@ a:active {
   margin-bottom: 50px;
   animation: fadeIn 3.5s ease-in-out;
 }
+.benefit-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 80px auto;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 2px;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+/* team-wrapper.css */
+
+.team-wrapper {
+  background-color: #f8f9fa;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-wrapper .card:hover {
+  transform: translateY(-0.25rem);
+}
+
+.team-wrapper .card-img-top {
+  object-fit: cover;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-body {
+  padding: 1.5rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+.team-wrapper .card-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.team-wrapper .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.team-wrapper .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004a9b;
+}

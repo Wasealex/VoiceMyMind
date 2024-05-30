@@ -1,48 +1,65 @@
-{% extends "base.html" %} {% block title %} About{% endblock %} {% block content
-%}
-<div class="welcome-container content-wrapper">
-  <h1>this is about page</h1>
-  <h2 style="font-size: 25px">Benefits of VoiceMyMind</h2>
-  <div class="benefits-container">
-    <div class="benefit-box">
-      <h3 style="font-size: 20px">Mental Health Awareness</h3>
-      <p style="font-size: 18px">
-        VoiceMyMind aims to raise awareness about mental health and its
-        importance in our lives. We provide resources, articles, and tips to
-        help you understand and improve your mental well-being.
+{% extends "base.html" %} {% block title %}About Voice My Mind{% endblock %} {%
+block content %}
+
+<div class="health-wrapper bg-light py-6">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>About Voice My Mind</h1>
+      <p>
+        Welcome to Voice My Mind, a website dedicated to promoting mental health
+        awareness and providing a safe, supportive space for individuals to
+        express their thoughts, feelings, and experiences through journaling.
       </p>
-    </div>
-    <div class="benefit-box">
-      <h3 style="font-size: 20px">Journal Taking Ability</h3>
-      <p style="font-size: 18px">
-        With VoiceMyMind, you can easily create and maintain a digital journal.
-        Document your thoughts, feelings, and experiences in a safe and private
-        space. Journaling can be a powerful tool for self-reflection, personal
-        growth, and stress management.
+      <p>
+        At Voice My Mind, we believe that mental health is just as important as
+        physical health, and that everyone deserves access to resources and
+        tools to support their well-being. Our mission is to destigmatize mental
+        health discussions, empower individuals to prioritize their mental
+        health, and create a community that fosters open and honest dialogue.
       </p>
-    </div>
-    <div class="benefit-box">
-      <h3 style="font-size: 20px">User-Friendly Interface</h3>
-      <p style="font-size: 18px">
-        Our web application features a user-friendly interface that makes it
-        easy to navigate and use. Whether you're new to journaling or an
-        experienced user, VoiceMyMind provides a seamless experience.
+      <h2>Our Approach</h2>
+      <p>
+        We take a holistic approach to mental health, recognizing that it
+        encompasses a wide range of factors, including emotional, psychological,
+        and social well-being. Our platform offers a variety of resources and
+        features, including:
       </p>
-    </div>
-    <div class="benefit-box">
-      <h3 style="font-size: 20px">Secure and Private</h3>
-      <p style="font-size: 18px">
-        We prioritize your privacy and security. Your journal entries are
-        encrypted and stored securely, ensuring that your personal information
-        remains confidential.
+      <ul>
+        <li>
+          A secure and private journaling platform where users can express
+          themselves freely and confidentially
+        </li>
+        <li>
+          Educational articles and blog posts on various mental health topics,
+          such as stress management, anxiety, depression, and self-care
+        </li>
+        <li>
+          Guided journal prompts and exercises to help users explore their
+          thoughts, feelings, and experiences
+        </li>
+        <li>
+          A supportive online community where users can connect with like-minded
+          individuals, share their stories, and offer encouragement and support
+        </li>
+        <li>
+          Resources and information on professional mental health services and
+          support options
+        </li>
+      </ul>
+      <h2>Join the Voice My Mind Community</h2>
+      <p>
+        We invite you to join the Voice My Mind community and take the first
+        step towards prioritizing your mental health. Whether you're looking for
+        a safe space to express yourself, seeking support and resources, or
+        simply want to be part of a movement that promotes mental health
+        awareness, we're here to support you on your journey.
       </p>
-    </div>
-    <div class="benefit-box">
-      <h3 style="font-size: 20px">Community Support</h3>
-      <p style="font-size: 18px">
-        Connect with like-minded individuals through our community forums. Share
-        your experiences, seek advice, and provide support to others on their
-        mental health journey.
+      <p>
+        To get started, simply
+        <a href="{{ url_for('auth.sign_up') }}">create an account</a> and begin
+        exploring the features and resources that Voice My Mind has to offer.
+        We're here to listen, support, and empower you to
+        <strong>Voice Your Mind</strong>.
       </p>
     </div>
   </div>
