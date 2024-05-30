@@ -19,6 +19,8 @@ class Journal(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     title = db.Column(db.String(100))
     body = db.Column(db.Text)
+    audio_file = db.Column(db.String(256))
+    image_file = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=func.now())
     user_id = db.Column(db.String(36), db.ForeignKey('user.id'))
 

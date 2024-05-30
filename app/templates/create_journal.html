@@ -1,18 +1,103 @@
 {% extends "base.html" %} {% block title %}Welcome{% endblock %} {% block
 content %}
-<div class="create-container content-wrapper">
-  <h1>Welcome to your journal</h1>
+<div class="content-wrapper">
   <h2>What is on your mind?</h2>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" class="form-control" />
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="form-control"
+        style="height: 50px"
+        placeholder="Enter title for your journal"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <textarea
+        name="body"
+        id="body"
+        class="form-control"
+        style="height: 100px"
+        placeholder="What's on your mind?"
+      ></textarea>
+      <div class="form-group">
+        <span>Click 'Record' to transcribe</span>
+        <button type="button" id="recordButton" class="btn btn-journal">
+          Record
+        </button>
+        <button type="button" id="stopButton" class="btn btn-danger" disabled>
+          Stop
+        </button>
+      </div>
+    </div>
+    <div class="mood-selector">
+      <label class="mood-label">
+        <input type="radio" name="mood" value="1" />
+        <span class="mood-emoji">😞</span>
+      </label>
+      <label class="mood-label">
+        <input type="radio" name="mood" value="2" />
+        <span class="mood-emoji">🙁</span>
+      </label>
+      <label class="mood-label">
+        <input type="radio" name="mood" value="3" />
+        <span class="mood-emoji">😐</span>
+      </label>
+      <label class="mood-label">
+        <input type="radio" name="mood" value="4" />
+        <span class="mood-emoji">🙂</span>
+      </label>
+      <label class="mood-label">
+        <input type="radio" name="mood" value="5" />
+        <span class="mood-emoji">😆</span>
+      </label>
     </div>
     <div class="form-group">
-      <label for="body">Body</label>
-      <textarea name="body" id="body" class="form-control"></textarea>
+      <label for="image_file" class="form-label">upload a journal image</label>
+      <input
+        type="file"
+        name="image_file"
+        id="image_file"
+        class="form-control form-control-lg"
+        placeholder="Select image file"
+      />
     </div>
-    <button type="submit" class="btn btn-primary">Add journal entry</button>
+    <button type="submit" class="btn-journal">Add journal entry</button>
   </form>
 </div>
+
+<script>
+  const recordButton = document.getElementById("recordButton");
+  const stopButton = document.getElementById("stopButton");
+  const transcription = document.getElementById("transcription");
+  let recognition;
+
+  if ("webkitSpeechRecognition" in window) {
+    recognition = new webkitSpeechRecognition();
+  } else if ("SpeechRecognition" in window) {
+    recognition = new SpeechRecognition();
+  } else {
+    console.log("Speech recognition not supported");
+  }
+
+  recordButton.addEventListener("click", () => {
+    recognition.start();
+    recordButton.disabled = true;
+    stopButton.disabled = false;
+  });
+
+  stopButton.addEventListener("click", () => {
+    recognition.stop();
+    recordButton.disabled = false;
+    stopButton.disabled = true;
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    body.value = transcript;
+  };
+</script>
+
 {% endblock %}

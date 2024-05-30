@@ -1,21 +1,29 @@
-{% extends "base.html" %} {% block content %}
-<div class="create-container content-wrapper">
+{% extends "base.html" %} {% block title %} my journals {% endblock %} {% block
+content %}
+<div class="show-wrapper">
   <h1>my journals</h1>
+  <a href="{{ url_for('views.calendar_view') }}" class="btn-journal"
+    >View Calendar</a
+  >
   <ul>
     {% for journal in user.journals|sort(reverse=True, attribute='timestamp') %}
+    {% if journal %}
     <li>
-      <h3>{{ journal.title }}</h3>
-      <p>
-        Date Created: {{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}
-      </p>
+      <h1>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h1>
+      <h2>{{ journal.title }}</h2>
       <p>{{ journal.body }}</p>
       <a
         href="{{ url_for('views.update_journal', journal_id=journal.id) }}"
-        class="btn btn-primary"
+        class="btn-journal"
         >edit</a
       >
+      <div>
+        {% if journal.image_file %}
+        <img src="{{ journal.image_file }}" alt="Journal Image" />
+        {% endif %}
+      </div>
     </li>
-    {% endfor %}
+    {% endif %} {% endfor %}
   </ul>
+  {% endblock %}
 </div>
-{% endblock %}

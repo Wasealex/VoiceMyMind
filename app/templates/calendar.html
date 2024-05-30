@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+<div class="content-wrapper">
+  <h1>Calendar</h1>
+  <div class="content-wrapper">
+    <div class="calendar">
+      {% for month_year, month_events in events.items() %} {% set current_date =
+      month_events[0].date|datetime %} {% set start_day =
+      current_date.strftime('%w')|int %} {% set sorted_events =
+      month_events|sort(attribute='date') %} {# Sort events by date #} {% for i
+      in range(start_day) %}
+      <div class="calendar-day"></div>
+      {% endfor %} {% for event in sorted_events %} {# Iterate over sorted
+      events #} {% set event_date = event.date|datetime %}
+      <div class="calendar-day">
+        <h3>
+          {{ event_date.month }}/{{ event_date.day }}/{{ event_date.year }}
+        </h3>
+        <h4>{{ event_date.strftime("%H:%M %p") }}</h4>
+        <ul>
+          <li>
+            <a href="{{ event.url }}" style="text-transform: uppercase"
+              >{{ event.title or '(no title)' }}</a
+            >
+          </li>
+        </ul>
+      </div>
+      {% endfor %} {% set days_in_month = current_date.strftime('%d')|int %} {%
+      set total_days = start_day + days_in_month %} {% for i in
+      range(total_days, 7 * ((total_days // 7) + 1)) %}
+      <div class="calendar-day"></div>
+      {% endfor %} {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
