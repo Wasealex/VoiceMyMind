@@ -1,19 +1,18 @@
 {% extends "base.html" %} {% block content %}
-<div class="content-wrapper">
-  <h1>Update My Journal</h1>
-
+<div class="my-content-wrapper bg-light py-6">
   {% if journal %}
   <h2>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h2>
-  <p>Anything you missed?</p>
+  <h4>update Anything you missed?</h4>
   <form
     method="POST"
     action="{{ url_for('views.update_journal', journal_id=journal.id) }}"
+    class="my-journal-form"
   >
-    <div class="form-group">
-      <label for="title"></label>
+    <div class="my-form-group">
+      <label for="title" class="my-form-label">Title</label>
       <input
         type="text"
-        class="form-control"
+        class="my-form-control"
         id="title"
         name="title"
         value="{{ journal.title }}"
@@ -21,15 +20,14 @@
       />
     </div>
 
-    <div class="form-group">
-      <label for="body"></label>
-      <textarea class="form-control" id="body" name="body" rows="5" required>
+    <div class="my-form-group">
+      <label for="body" class="my-form-label">Body</label>
+      <textarea class="my-form-control" id="body" name="body" rows="5" required>
 {{ journal.body }}</textarea
       >
     </div>
 
-    <button type="submit" class="btn-journal">Update</button>
-
+    <button type="submit" class="btn-green-journal">Update</button>
     <a
       href="{{ url_for('views.delete_journal', journal_id=journal.id) }}"
       class="btn-journal-danger"

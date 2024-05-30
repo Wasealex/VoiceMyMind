@@ -12,7 +12,7 @@ views = Blueprint('views', __name__)
 @views.route('/all', methods=['GET', 'POST'])
 @login_required
 def myjournal():
-    return render_template('all.html', user=current_user)
+    return render_template('all.html', user=current_user, Journal=Journal)
 
 @views.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -84,7 +84,7 @@ def voice_to_text():
     # Return the text as a response
     return text
 
-@views.route('/calendar', methods=['GET', 'POST'])
+@views.route('/calendar_view', methods=['GET', 'POST'])
 @login_required
 def calendar_view():
     # Fetch all journal entries for the current user
