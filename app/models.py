@@ -21,6 +21,7 @@ class Journal(db.Model):
     body = db.Column(db.Text)
     audio_file = db.Column(db.String(256))
     image_file = db.Column(db.String(256))
+    mood = db.Column(db.Integer, default=3)
     timestamp = db.Column(db.DateTime, index=True, default=func.now())
     user_id = db.Column(db.String(36), db.ForeignKey('user.id'))
 

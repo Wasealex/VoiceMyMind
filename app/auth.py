@@ -16,6 +16,7 @@ def about():
     return render_template('about.html', user=current_user)
 
 @auth.route('/healthtips', methods=['GET'])
+@login_required
 def healthtips():
     return render_template('health_tips.html', user=current_user)
 
