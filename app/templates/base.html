@@ -122,65 +122,6 @@
       {% endif %} {% endfor %} {% endif %} {% endwith %}
       <div>{% block content %}{% endblock %}</div>
     </div>
-    <div class="container md-5">
-      <footer style="background-color: #deded5">
-        <div class="container p-4">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h5 class="mb-3" style="letter-spacing: 2px; color: #818963">
-                Voice my mind
-              </h5>
-              <p>
-                Voice my mind is the best platform there is and yet it needs
-                many improvment please share your thoughts and help improve my
-                website.
-              </p>
-            </div>
-            <div class="col-lg-5 col-md-5 mb-4">
-              <h5 class="mb-3" style="letter-spacing: 2px; color: #818963">
-                Links
-              </h5>
-              <ul class="list-unstyled mb-0">
-                <li class="mb-1">
-                  <a
-                    style="color: #4f4f4f"
-                    id="create_journal"
-                    href="{{ url_for('views.create_journal') }}"
-                    >Create Journal</a
-                  >
-                  :> Creates your journal easily
-                </li>
-                <li class="mb-1">
-                  <a
-                    style="color: #4f4f4f"
-                    id="myjournal"
-                    href="{{ url_for('views.myjournal') }}"
-                    >Read Journal</a
-                  >
-                  :> You can easily read your journal
-                </li>
-                <li class="mb-1">
-                  <a
-                    style="color: #4f4f4f"
-                    id="healthtips"
-                    href="{{ url_for('auth.healthtips') }}"
-                    >Health Topics</a
-                  >
-                  :> Has different topics on Health
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-6 col-md-6 mb-4"></div>
-          </div>
-        </div>
-        <div
-          class="text-center p-3"
-          style="background-color: rgba(0, 0, 0, 0.2)"
-        >
-          © 2024 Copyright:
-        </div>
-      </footer>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {

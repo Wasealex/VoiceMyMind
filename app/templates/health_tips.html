@@ -1,22 +1,17 @@
 {% extends "base.html" %} {% block title %}Health Tips{% endblock %} {% block
 content %}
-<div class="content-wrapper">
+<div class="health-wrapper">
   <form method="GET">
     <div class="row">
       <div class="col-md-12">
-        <button
-          type="submit"
-          name="category"
-          value="anxiety"
-          class="btn btn-outline-secondary btn-block"
-        >
+        <button type="submit" name="category" value="anxiety" class="catagory">
           > Anxiety
         </button>
         <button
           type="submit"
           name="category"
           value="depression"
-          class="btn btn-outline-secondary btn-block"
+          class="catagory"
         >
           > Depression
         </button>
@@ -24,19 +19,20 @@ content %}
           type="submit"
           name="category"
           value="addiction"
-          class="btn btn-outline-secondary btn-block"
+          class="catagory"
         >
           > Addiction
         </button>
       </div>
     </div>
   </form>
-
+</div>
+<div class="health-topic">
   {% if request.args.get('category') == "anxiety" %} {% include 'anxiety.html'
   %} {% elif request.args.get('category') == "depression" %} {% include
   'depression.html' %} {% elif request.args.get('category') == "addiction" %} {%
   include 'addiction.html' %} {% else %}
-  <h1>Health Tips</h1>
+  <h2>Health Topics</h2>
   <p>
     Please click on one of the buttons above to view tips for a specific
     category.
