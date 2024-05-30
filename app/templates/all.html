@@ -12,6 +12,11 @@ content %}
       <h1>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h1>
       <h2>{{ journal.title }}</h2>
       <p>{{ journal.body }}</p>
+      <p>
+        {% if journal.mood == 1 %} 😔 {% elif journal.mood == 2 %} 😐 {% elif
+        journal.mood == 3 %} 🙂 {% elif journal.mood == 4 %} 😃 {% elif
+        journal.mood == 5 %} 😄 {% endif %}
+      </p>
       <a
         href="{{ url_for('views.update_journal', journal_id=journal.id) }}"
         class="btn-journal"

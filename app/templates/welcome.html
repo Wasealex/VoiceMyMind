@@ -28,25 +28,26 @@ content %}
       </h3>
     </div>
     <div class="col-md-7">
-        <h2>
-    Take a few minutes to get started
-    <a
-      href="{{ url_for('auth.sign_up') }}"
-      class="btn btn-outline-journal"
-      style="font-size: 30px"
-      >Sign Up</a
-    >
-    <h2>
-      Already have an account?
-      <a
-        href="{{ url_for('auth.login') }}"
-        class="btn btn-outline-journal"
-        style="color: rgb(42, 165, 79); font-size: 30px"
-        >Log In</a
-      >
-    </h2>
+      <h3>
+        Take a few minutes to get started
+        <a
+          href="{{ url_for('auth.sign_up') }}"
+          class="btn btn-outline-journal"
+          style="font-size: 30px"
+          >Sign Up</a
+        >
+      </h3>
+      <h2>
+        Already have an account?
+        <a
+          href="{{ url_for('auth.login') }}"
+          class="btn btn-outline-journal"
+          style="color: rgb(42, 165, 79); font-size: 30px"
+          >Log In</a
+        >
+      </h2>
     </div>
   </div>
 
-    {% endblock %}
+  {% endblock %}
 </div>

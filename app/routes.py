@@ -18,7 +18,8 @@ def create_journal():
         title = request.form.get('title')
         body = request.form.get('body')
         image_file = request.files['image_file']
-        new_journal = Journal(title=title, body=body, image_file=image_file, author=current_user, user_id=current_user.id)
+        mood = request.form.get('mood')
+        new_journal = Journal(title=title, body=body, image_file=image_file, mood=mood, author=current_user, user_id=current_user.id)
         db.session.add(new_journal)
         db.session.commit()
         flash('Journal entry created.', category='success')
