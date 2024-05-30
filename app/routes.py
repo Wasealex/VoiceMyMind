@@ -1,7 +1,9 @@
+import os
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
+from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 from app.models import Journal
-from app import db, sr
+from app import allowed_file, db, sr
 
 
 views = Blueprint('views', __name__)
@@ -18,6 +20,12 @@ def create_journal():
         title = request.form.get('title')
         body = request.form.get('body')
         image_file = request.files['image_file']
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            image_file.save(os.path.join('app/static/uploads', filename))
+            image_file = f'uploads/{filename}'
+        else:
+            image_file = None
         mood = request.form.get('mood')
         new_journal = Journal(title=title, body=body, image_file=image_file, mood=mood, author=current_user, user_id=current_user.id)
         db.session.add(new_journal)
@@ -45,9 +53,12 @@ def update_journal(journal_id):
 @login_required
 def delete_journal(journal_id):
     journal = Journal.query.get(journal_id)
-    if journal and journal.author == current_user:
+    if journal and journal.author == current_user:        
+        if journal.image_file and os.path.exists(os.path.join('app/static/', journal.image_file)):
+            os.remove(os.path.join('app/static/', journal.image_file))
         db.session.delete(journal)
         db.session.commit()
+
         flash('Journal entry deleted.', category='success')
         return redirect(url_for('views.myjournal'))
     else:

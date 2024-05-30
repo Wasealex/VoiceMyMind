@@ -1,34 +1,47 @@
-{% extends "base.html" %} {% block title %} my journals {% endblock %} {% block
+{% extends "base.html" %} {% block title %} My Journals {% endblock %} {% block
 content %}
-<div class="show-wrapper">
-  <h1>my journals</h1>
+<div class="journal-wrapper">
+  <h1>My Journals</h1>
   <a href="{{ url_for('views.calendar_view') }}" class="btn-journal"
     >View Calendar</a
   >
-  <ul>
+  <div class="journal-grid">
     {% for journal in user.journals|sort(reverse=True, attribute='timestamp') %}
     {% if journal %}
-    <li>
-      <h1>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h1>
-      <h2>{{ journal.title }}</h2>
-      <p>{{ journal.body }}</p>
-      <p>
-        {% if journal.mood == 1 %} 😔 {% elif journal.mood == 2 %} 😐 {% elif
-        journal.mood == 3 %} 🙂 {% elif journal.mood == 4 %} 😃 {% elif
-        journal.mood == 5 %} 😄 {% endif %}
-      </p>
-      <a
-        href="{{ url_for('views.update_journal', journal_id=journal.id) }}"
-        class="btn-journal"
-        >edit</a
-      >
-      <div>
-        {% if journal.image_file %}
-        <img src="{{ journal.image_file }}" alt="Journal Image" />
-        {% endif %}
+    <div class="journal-card">
+      <div class="journal-header">
+        <h2>{{ journal.timestamp.strftime('%B %d, %Y %H:%M:%S') }}</h2>
+        <h3>{{ journal.title }}</h3>
       </div>
-    </li>
-    {% endif %} {% endfor %}
-  </ul>
+      <div class="journal-content">
+        <p>{{ journal.body }}</p>
+        <div class="journal-mood">
+          {% if journal.mood == 1 %} 😔 {% elif journal.mood == 2 %} 😐 {% elif
+          journal.mood == 3 %} 🙂 {% elif journal.mood == 4 %} 😃 {% elif
+          journal.mood == 5 %} 😄 {% endif %}
+        </div>
+        <a
+          href="{{ url_for('views.update_journal', journal_id=journal.id) }}"
+          class="btn-journal"
+          >Edit</a
+        >
+      </div>
+      {% if journal.image_file %}
+      <div class="journal-image">
+        <img
+          src="{{ url_for('static', filename=journal.image_file) }}"
+          alt="image"
+        />
+      </div>
+      {% else %}
+      <div class="journal-image">
+        <img
+          src="{{ url_for('static', filename='uploads/default.jpg') }}"
+          alt="default"
+        />
+      </div>
+      {% endif %} {% endif %} {% endfor %}
+    </div>
+  </div>
   {% endblock %}
 </div>

@@ -71,8 +71,9 @@ content %}
 <script>
   const recordButton = document.getElementById("recordButton");
   const stopButton = document.getElementById("stopButton");
-  const transcription = document.getElementById("transcription");
+  const transcription = document.getElementById("body");
   let recognition;
+  let isRecording = false;
 
   if ("webkitSpeechRecognition" in window) {
     recognition = new webkitSpeechRecognition();
@@ -82,21 +83,46 @@ content %}
     console.log("Speech recognition not supported");
   }
 
+  // Set continuous mode and interim results
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
   recordButton.addEventListener("click", () => {
-    recognition.start();
-    recordButton.disabled = true;
-    stopButton.disabled = false;
+    if (!isRecording) {
+      recognition.start();
+      recordButton.disabled = true;
+      stopButton.disabled = false;
+      isRecording = true;
+    }
   });
 
   stopButton.addEventListener("click", () => {
-    recognition.stop();
-    recordButton.disabled = false;
-    stopButton.disabled = true;
+    if (isRecording) {
+      recognition.stop();
+      recordButton.disabled = false;
+      stopButton.disabled = true;
+      isRecording = false;
+    }
   });
 
   recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    body.value = transcript;
+    let transcript = "";
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      if (event.results[i].isFinal) {
+        transcript += event.results[i][0].transcript;
+      }
+    }
+    transcription.value += transcript;
+  };
+
+  recognition.onerror = (event) => {
+    console.error("Speech recognition error:", event.error);
+  };
+
+  recognition.onend = () => {
+    if (isRecording) {
+      recognition.start();
+    }
   };
 </script>
 

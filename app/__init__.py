@@ -9,6 +9,7 @@ from flask_socketio import SocketIO  # Import SocketIO
 import speech_recognition as sr
 import secrets
 import string
+import os
 
 db = SQLAlchemy()
 socketio = SocketIO()  # Initialize SocketIO
@@ -22,8 +23,18 @@ DB_NAME = 'voice_database'
 SQLALCHEMY_DATABASE_URI = f'mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+UPLOAD_FOLDER = 'app/static/uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+    os.chmod(UPLOAD_FOLDER, 0o755)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+
 def create_app():
     app = Flask(__name__)
+
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     app.config['SECRET_KEY'] = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
     app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
@@ -55,3 +66,7 @@ def create_app():
         return datetime.strptime(date_string, '%Y-%m-%d %H:%M')
 
     return app
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
