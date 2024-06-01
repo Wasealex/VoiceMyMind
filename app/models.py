@@ -1,3 +1,10 @@
+"""
+This module defines the data models for the application's users and journals.
+
+The `User` model represents a user of the application, with fields for their first name, last name, email, and password hash. Users have a one-to-many relationship with `Journal` objects, which represent the user's journal entries.
+
+The `Journal` model represents a journal entry, with fields for the title, body, audio file, image file, mood, and timestamp. Each journal entry is associated with a user via the `user_id` foreign key.
+"""
 import uuid
 from datetime import datetime
 from flask_login import UserMixin

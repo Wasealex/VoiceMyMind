@@ -116,6 +116,20 @@ content %}
 ></script>
 
 <script>
+  /**
+   * Handles the speech recognition functionality for the create journal page.
+   * Allows the user to record audio input and have it transcribed into the journal body.
+   */
+  /**
+   * Handles the functionality for recording and transcribing speech using the Web Speech API.
+   * uses the `webkitSpeechRecognition` or `SpeechRecognition` API to continuously transcribe the user's speech and update the `body` textarea.
+   * The `recognition.onresult` event is used to capture the final transcription results,
+   * which are then appended to the `body` textarea.
+   * The `recognition.onerror` event is used to log any errors that occur during
+   * the speech recognition process.
+   * The `recognition.onend` event is used to automatically restart the speech recognition
+   * if the user is still recording.
+   */
   const recordButton = document.getElementById("recordButton");
   const stopButton = document.getElementById("stopButton");
   const transcription = document.getElementById("body");
