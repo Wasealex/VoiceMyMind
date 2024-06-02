@@ -1,3 +1,15 @@
+"""
+The `views` blueprint handles the routing and rendering of various pages in the web application.
+
+The following routes are defined:
+
+- `myjournal()`: Renders the 'all.html' template, displaying all journal entries for the current user.
+- `create_journal()`: Handles the creation of a new journal entry, including saving the image file (if provided) and committing the new journal entry to the database.
+- `update_journal(journal_id)`: Handles the updating of an existing journal entry, allowing the user to modify the title and body of the entry.
+- `delete_journal(journal_id)`: Handles the deletion of an existing journal entry, including removing the associated image file (if any) and deleting the entry from the database.
+- `voice_to_text()`: Handles the conversion of an audio file to text using the Google Speech Recognition API.
+- `calendar_view()`: Fetches all journal entries for the current user and groups them by month, rendering the 'calendar.html' template with the events.
+"""
 import os
 import uuid
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify

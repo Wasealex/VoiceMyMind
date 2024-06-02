@@ -1,3 +1,14 @@
+"""
+The `auth` blueprint handles user authentication-related functionality for the application.
+
+It provides the following routes:
+- `welcome()`: Renders the welcome page with the current user.
+- `about()`: Renders the about page with the current user.
+- `healthtips()`: Renders the health tips page, accessible only to authenticated users.
+- `login()`: Handles user login, including validating the email and password, and logging in the user.
+- `logout()`: Logs out the current user.
+- `sign_up()`: Handles user registration, including validating the email and passwords, and creating a new user account.
+"""
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user

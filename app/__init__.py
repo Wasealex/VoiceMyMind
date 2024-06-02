@@ -1,4 +1,18 @@
 """
+Initializes the Flask application and sets up the necessary configurations and components.
+
+The `create_app()` function is the entry point for creating the Flask application. It sets up the following:
+
+- Configures the Flask application with various settings, including the database URI, upload folder, and allowed file extensions.
+- Initializes the SQLAlchemy and SocketIO extensions.
+- Registers the blueprint routes for the application.
+- Configures the login manager for user authentication.
+- Creates the database tables if they don't already exist.
+- Adds a custom Jinja2 filter for formatting datetime objects.
+
+The `allowed_file()` function is a helper function that checks if a given filename has an allowed file extension.
+"""
+"""
 Initializes the Flask application.
 """
 from datetime import datetime
