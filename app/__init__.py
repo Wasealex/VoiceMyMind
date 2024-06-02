@@ -24,15 +24,17 @@ import speech_recognition as sr
 import secrets
 import string
 import os
+from dotenv import load_dotenv
 
 db = SQLAlchemy()
 socketio = SocketIO()  # Initialize SocketIO
+load_dotenv()
 
 # Database configuration
-DB_HOST = 'localhost'
-DB_USER = 'voicemymind'
-DB_PASSWORD = 'VoiceMyMind'
-DB_NAME = 'voice_database'
+DB_HOST = os.getenv('DB_HOST')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_NAME = os.getenv('DB_NAME')
 
 SQLALCHEMY_DATABASE_URI = f'mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -63,7 +65,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from app.models import User
-
+    
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
