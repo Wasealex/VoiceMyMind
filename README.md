@@ -8,7 +8,7 @@ VoiceMyMind is a mental health journal web application that provides awareness o
 
 VoiceMyMind is a powerful tool that aims to promote mental health awareness and provide a platform for individuals to express their thoughts and emotions through journaling. By offering a secure and user-friendly interface, VoiceMyMind encourages users to reflect on their daily experiences and track their mental well-being over time.
 
-To learn more about VoiceMyMind, please visit our [deployed site](https://www.youtube.com/watch?v=WxFHQqz5A1Q&ab_channel=dewa) and check out our [final project blog article](https://www.voicemymind.com/blog).
+To learn more about VoiceMyMind, please visit our [deployed site](https://www.youtube.com/watch?v=WxFHQqz5A1Q&ab_channel=dewa) and check out our [final project blog article](https://medium.com/@wasealex27/voicemymind-363967c1bee0).
 To contact me here is my [linkedin](https://www.linkedin.com/in/dr-wastna-alemayehu-b560a0165)
 
 ## Installation
