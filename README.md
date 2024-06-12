@@ -4,6 +4,8 @@ VoiceMyMind is a mental health journal web application that provides awareness o
 
 ## Introduction
 
+![VoiceMyMind Brand](/app/static/images/brand.png)
+
 VoiceMyMind is a powerful tool that aims to promote mental health awareness and provide a platform for individuals to express their thoughts and emotions through journaling. By offering a secure and user-friendly interface, VoiceMyMind encourages users to reflect on their daily experiences and track their mental well-being over time.
 
 To learn more about VoiceMyMind, please visit our [deployed site](https://www.youtube.com/watch?v=WxFHQqz5A1Q&ab_channel=dewa) and check out our [final project blog article](https://www.voicemymind.com/blog).
@@ -54,6 +56,6 @@ VoiceMyMind would like to acknowledge the following technologies and frameworks:
 - [Flask](https://flask.palletsprojects.com/)
 - [MySQL](https://www.mysql.com/)
 
-![VoiceMyMind Screenshot](/app/static/images/brand.png)
+![VoiceMyMind Screenshot](/app/static/images/screenshot1.png)
 
 [Visit the landing page on GitHub Pages](https://wasealex.github.io/VoiceMyMind_Landing_Page/)
