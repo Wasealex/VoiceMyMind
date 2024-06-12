@@ -5,6 +5,8 @@
 voice/
 .vscode
 .env
+my_first_web_key.pem
+app/static/uploads/*
 # User-specific files
 *.rsuser
 *.suo
