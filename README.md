@@ -56,6 +56,6 @@ VoiceMyMind would like to acknowledge the following technologies and frameworks:
 - [Flask](https://flask.palletsprojects.com/)
 - [MySQL](https://www.mysql.com/)
 
-![VoiceMyMind Screenshot](/app/static/images/screenshot1.png)
+![VoiceMyMind Screenshot](/app/static/images/screenhot1.png)
 
 [Visit the landing page on GitHub Pages](https://wasealex.github.io/VoiceMyMind_Landing_Page/)
